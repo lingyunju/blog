@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->share('adminurl','/resources/views/admin');         //定义admin资源路径变量
     }
 
     /**
