@@ -47,7 +47,7 @@
     <div class="row">
         <div class="well col-md-5 center login-box">
             @if(!empty(session('msg')))
-                <div class="alert alert-info">
+                <div class="alert alert-danger">
                     {{session('msg')}}
                 </div>
             @else

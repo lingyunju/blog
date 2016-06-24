@@ -14,8 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('test','IndexController@index');
+
+Route::group(['middleware' => 'admin.login','namespace' => 'Admin','prefix' => 'admin'], function () {
+    Route::get('index','IndexController@index');
+    Route::get('loginout','LoginController@loginOut');
+    Route::any('changepass','IndexController@changePass');
+    Route::resource('cate', 'CateController');
+});
 
 Route::any('admin/login','Admin\LoginController@login');
-
-Route::get('admin/code','Admin\LoginController@code');
