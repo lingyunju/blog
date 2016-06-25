@@ -19,6 +19,7 @@ Route::group(['middleware' => 'admin.login','namespace' => 'Admin','prefix' => '
     Route::get('index','IndexController@index');
     Route::get('loginout','LoginController@loginOut');
     Route::any('changepass','IndexController@changePass');
+    Route::post('changeorder','CateController@changeOrder');
     Route::resource('cate', 'CateController');
 });
 
