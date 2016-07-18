@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016-06-25 08:46:22
+-- Generation Time: 2016-07-18 11:32:08
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -23,6 +23,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `blog_article`
+--
+
+CREATE TABLE IF NOT EXISTS `blog_article` (
+  `art_id` int(11) NOT NULL AUTO_INCREMENT,
+  `art_title` varchar(100) NOT NULL DEFAULT '' COMMENT '文章标题',
+  `art_tag` varchar(100) NOT NULL DEFAULT '' COMMENT '文章关键词',
+  `art_description` varchar(255) NOT NULL DEFAULT '' COMMENT '描述',
+  `art_img` varchar(255) NOT NULL COMMENT '缩略图',
+  `art_content` text NOT NULL,
+  `art_time` int(11) NOT NULL COMMENT '发布时间',
+  `art_editor` varchar(50) NOT NULL COMMENT '文章作者',
+  `art_view` int(11) NOT NULL COMMENT '查看次数',
+  PRIMARY KEY (`art_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章列表' AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `blog_cate`
 --
 
@@ -36,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `blog_cate` (
   `cate_order` int(11) NOT NULL DEFAULT '0' COMMENT '排序',
   `cate_pid` int(11) NOT NULL COMMENT '父级ID',
   PRIMARY KEY (`cate_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='文章分类' AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='文章分类' AUTO_INCREMENT=10 ;
 
 --
 -- 转存表中的数据 `blog_cate`
@@ -48,9 +67,8 @@ INSERT INTO `blog_cate` (`cate_id`, `cate_name`, `cate_title`, `cate_keyword`, `
 (3, '娱乐', '人人都有自己的娱乐圈', '', '', 0, 2, 0),
 (4, '热点新闻', '最新新闻事件_2016年国内重大社会热点新闻事件', '', '', 0, 11, 1),
 (5, '军事新闻', '最新军事新闻_中国军事新闻_国际军事新闻军情网站', '', '', 0, 10, 1),
-(6, '体育彩票', '中国体彩网 - 体育彩票管理中心唯一指定官方网站', '', '', 0, 0, 2),
-(7, '乐视体育', '乐视体育–最专业的体育赛事平台', '', '', 0, 1, 2),
-(8, '网易体育', '网易体育_有态度的体育门户', '', '', 0, 2, 2);
+(7, '乐视体育', '乐视体育–最专业的体育赛事平台', '', '', 0, 3, 2),
+(9, 'CCTV5', '中央体育报道', '中国，报道，中国中央电视台', '国内最新体育咨询', 0, 2, 2);
 
 -- --------------------------------------------------------
 

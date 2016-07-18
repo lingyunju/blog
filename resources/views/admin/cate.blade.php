@@ -1,5 +1,53 @@
 @extends('layouts.admin')
 @section('title','文章分类列表')
+@section('jsandcss')
+    <link href='{{$adminurl}}/bower_components/layer/skin/layer.css' rel='stylesheet'>
+    <script src="{{$adminurl}}/bower_components/layer/layer.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            //修改排序
+            $(".cate_order").change(function () {
+                var corder=$(this).val();
+                var cid=$(this).attr('cid');
+                $.ajax({
+                    type: "POST",
+                    url: '{{url('admin/changeorder')}}',
+                    data: "cid="+cid+"&cateOrder="+corder+"&_token={{csrf_token()}}",
+                    success: function(data){
+                        if(data.status==0){
+                            $("#message").addClass('alert-success alert');
+                            $("#message").append(data.msg);
+                        }else{
+                            $("#message").addClass('alert-danger alert');
+                            $("#message").append(data.msg);
+                        }
+                    }
+                })
+            })
+
+            //删除分类
+            $(".delete_but").click(function () {
+                var id=$(this).attr("data-id");
+                layer.confirm('确定要删除该分类？', {
+                 btn: ['确定','取消']       //按钮
+                 }, function(){
+                    $.ajax({
+                        type:"post",
+                        url:"/admin/cate/delete",
+                        data:"cata_id="+id+"&_token={{csrf_token()}}",
+                        success:function(data) {
+                            layer.msg(data.msg,function(){
+                                location.reload();
+                            });
+                        }
+                    })
+                 }, function(){
+
+                 });
+            })
+        })
+    </script>
+@endsection
 @section('position')
     <li><a href="{{url('admin/index')}}">首页</a></li>
     <li><a href="{{url('admin/cate')}}">文章分类</a></li>
@@ -36,22 +84,22 @@
                         @foreach($data as $v)
                         <tr>
                             <td class="text-center" style="vertical-align: middle">{{$v->cate_id}}</td>
-                            <td class="text-center" style="vertical-align: middle">{{$v->_cate_name}}</td>
+                            <td class="text-center" style="vertical-align: middle">{{$v->cate_name}}</td>
                             <td class="text-center" style="vertical-align: middle">{{$v->cate_title}}</td>
                             <td class="text-center" style="vertical-align: middle">{{$v->cate_view}}</td>
                             <td class="text-center" style="vertical-align: middle"><input type="text" cid="{{$v->cate_id}}}" class="cate_order" style="width: 50px;text-align: center;" value="{{$v->cate_order}}"></td>
                             <td class="text-center">
                                 <a class="btn btn-success" href="#">
                                     <i class="glyphicon glyphicon-zoom-in icon-white"></i>
-                                    View
+                                    查看
                                 </a>
-                                <a class="btn btn-info" href="#">
+                                <a class="btn btn-info" href="{{url('admin/cate/'.$v->cate_id.'/edit')}}">
                                     <i class="glyphicon glyphicon-edit icon-white"></i>
-                                    Edit
+                                    修改
                                 </a>
-                                <a class="btn btn-danger" href="#">
+                                <a class="btn btn-danger delete_but" href="javascript:void (0);" data-id="{{$v->cate_id}}">
                                     <i class="glyphicon glyphicon-trash icon-white"></i>
-                                    Delete
+                                    删除
                                 </a>
                             </td>
                         </tr>
@@ -63,26 +111,4 @@
         </div>
         <!--/span-->
     </div><!--/row-->
-    <script type="text/javascript">
-        $(function(){
-           $(".cate_order").change(function () {
-               var corder=$(this).val();
-               var cid=$(this).attr('cid');
-               $.ajax({
-                   type: "POST",
-                   url: '{{url('admin/changeorder')}}',
-                   data: "cid="+cid+"&cateOrder="+corder+"&_token={{csrf_token()}}",
-                   success: function(data){
-                        if(data.status==0){
-                            $("#message").addClass('alert-success alert');
-                            $("#message").append(data.msg);
-                        }else{
-                            $("#message").addClass('alert-danger alert');
-                            $("#message").append(data.msg);
-                        }
-                   }
-               });
-           })
-        })
-    </script>
 @endsection

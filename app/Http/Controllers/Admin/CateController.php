@@ -39,14 +39,58 @@ class CateController extends CommonController
     //POST | admin/cate    
     public function store()
     {
-        
+        $input=Input::except("_token");
+        $re=Cate::create($input);
+        if($re){
+            return redirect('admin/cate');
+        }else{
+            return back()->with('msg','添加分类失败，请稍后重试！');
+        }
     }
     //GET|admin/cate/create 
     public function create()
     {
-        return view('admin.addcate');
+        $toptag=Cate::where("cate_pid",0)->get();
+        return view('admin.addcate',compact("toptag"));
     }
-    
+    //GET|admin/cate/edit
+    //编辑分类
+    public function edit($cate_id)
+    {
+        $toptag=Cate::where("cate_pid",0)->get();
+        $cateinfo=Cate::find($cate_id);
+        return view('admin.editcate',compact("toptag","cateinfo"));
+    }
+
+    //更新分类信息
+    public function update($cate_id){
+        $input=Input::except('_token','_method');
+        $re=Cate::where("cate_id",$cate_id)->update($input);
+        if($re){
+            return redirect('admin/cate');
+        }else{
+            return back()->with("msg","分类信息更新失败，请稍后重试！");
+        }
+    }
+
+    //删除分类
+    public  function delete(){
+        $input=Input::only('cata_id');
+        $re=Cate::where("cate_id",$input['cata_id'])->delete();
+        if($re){
+            $data=[
+                'status'=>0,
+                'msg'=>'删除分类成功！',
+            ];
+        }else{
+            $data=[
+                'status'=>1,
+                'msg'=>'删除分类失败，请稍后再试！',
+            ];
+        }
+        return $data;
+    }
+
     /*ajax修改分类排序*/
     public function changeOrder()
     {
