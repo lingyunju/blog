@@ -16,12 +16,15 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => 'admin.login','namespace' => 'Admin','prefix' => 'admin'], function () {
+    Route::get('/','IndexController@index');
     Route::get('index','IndexController@index');
     Route::get('loginout','LoginController@loginOut');
     Route::any('changepass','IndexController@changePass');
     Route::post('changeorder','CateController@changeOrder');
     Route::post('cate/delete','CateController@delete');
     Route::resource('cate', 'CateController');
+    Route::post('article/delete','ArticleController@delete');
+    Route::resource('article', 'ArticleController');
 });
 
 Route::any('admin/login','Admin\LoginController@login');

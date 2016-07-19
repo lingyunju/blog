@@ -24,12 +24,6 @@
     <link href='{{$adminurl}}/css/animate.min.css' rel='stylesheet'>
     <!-- jQuery -->
     <script src="{{$adminurl}}/bower_components/jquery/jquery.min.js"></script>
-
-    <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!-- The fav icon -->
     <link rel="shortcut icon" href="{{$adminurl}}/img/favicon.ico">
     @section('jsandcss')
     @show
@@ -129,7 +123,7 @@
                         <li><a class="ajax-link" href="form.html"><i
                                         class="glyphicon glyphicon-edit"></i><span> Forms</span></a></li>
                         <li><a class="ajax-link" href="{{url('admin/cate')}}"><i class="glyphicon glyphicon-list-alt"></i><span> 文章分类</span></a></li>
-                        <li><a class="ajax-link" href=""><i class="glyphicon glyphicon-list-alt"></i><span> 文章列表</span></a></li>
+                        <li><a class="ajax-link" href="{{url('admin/article')}}"><i class="glyphicon glyphicon-list-alt"></i><span> 文章列表</span></a></li>
                         <li><a class="ajax-link" href="typography.html"><i class="glyphicon glyphicon-font"></i><span> Typography</span></a>
                         </li>
                         <li><a class="ajax-link" href="gallery.html"><i class="glyphicon glyphicon-picture"></i><span> Gallery</span></a>
