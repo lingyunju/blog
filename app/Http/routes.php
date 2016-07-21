@@ -25,6 +25,9 @@ Route::group(['middleware' => 'admin.login','namespace' => 'Admin','prefix' => '
     Route::resource('cate', 'CateController');
     Route::post('article/delete','ArticleController@delete');
     Route::resource('article', 'ArticleController');
+    Route::resource('links', 'LinksController');
+    Route::resource('navs', 'NavsController');
+    Route::resource('config', 'ConfigController');
 });
 
 Route::any('admin/login','Admin\LoginController@login');

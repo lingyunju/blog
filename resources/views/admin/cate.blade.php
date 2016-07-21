@@ -84,7 +84,7 @@
                         @foreach($data as $v)
                         <tr>
                             <td class="text-center" style="vertical-align: middle">{{$v->cate_id}}</td>
-                            <td class="text-center" style="vertical-align: middle">{{$v->cate_name}}</td>
+                            <td class="text-left" style="vertical-align: middle">{{$v->_cate_name}}</td>
                             <td class="text-center" style="vertical-align: middle">{{$v->cate_title}}</td>
                             <td class="text-center" style="vertical-align: middle">{{$v->cate_view}}</td>
                             <td class="text-center" style="vertical-align: middle"><input type="text" cid="{{$v->cate_id}}}" class="cate_order" style="width: 50px;text-align: center;" value="{{$v->cate_order}}"></td>
