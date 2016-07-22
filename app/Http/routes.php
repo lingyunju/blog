@@ -10,9 +10,10 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['namespace' => 'Home'], function () {
+    Route::get('/','IndexController@index');
+    Route::get('newslist','IndexController@newslist');
+    Route::get('cate/{id}','IndexController@cate');
 });
 
 Route::group(['middleware' => 'admin.login','namespace' => 'Admin','prefix' => 'admin'], function () {
