@@ -5,7 +5,7 @@
 [![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
 [![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
 [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
-该项目根据陈华老师PHP高端框架系列教程Laravel5.2框架（基础篇+实战篇）完成了一个简单的博客系统，包含前后端。
+### 该项目根据陈华老师PHP高端框架系列教程Laravel5.2框架（基础篇+实战篇）完成了一个简单的博客系统，包含前后端。
 ## 后端使用了UI框架Charisma
 ![image](https://github.com/lingyunju/blog/blob/master/public/img/login.png)
 ![image](https://github.com/lingyunju/blog/blob/master/public/img/admin1.png)
